@@ -1,7 +1,0 @@
-- hosts: test
-
-
-  roles:
-    - timstaley.base
-    - { role: ../../roletemplate,
-        }
