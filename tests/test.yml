@@ -1,4 +1,5 @@
+---
 - hosts: test
-
   roles:
-    - '../../.'    # The current directory itself is the role
+#    - role-template # official one
+#    - '../../.'    # work using vagrant tests
