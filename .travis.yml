@@ -3,42 +3,47 @@ language: python
 services: docker
 
 env:
-  - distribution: Ubuntu
-    distribution_version: xenial
-    init: /lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-  - distribution: Ubuntu
-    distribution_version: trusty
-    init: /sbin/init
-    run_opts: ""
-  - distribution: EL
-    distribution_version: "7"
-    init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-  - distribution: EL
-    distribution_version: "6"
-    init: /sbin/init
-    run_opts: ""
-  - distribution: Debian
-    distribution_version: stretch
-    init: /usr/local/bin/davedaemon
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-  - distribution: Debian
-    distribution_version: jessie
-    init: /lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-  - distribution: Debian
-    distribution_version: wheezy
-    init: /sbin/init
-    run_opts: ""
-  - distribution: Fedora
-    distribution_version: "24"
-    init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-  - distribution: Fedora
-    distribution_version: "23"
-    init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  global:
+    - ANSIBLE_INVENTORY: "tests/inventory"
+    - PYTHONUNBUFFERED: "1"
+    - ANSIBLE_FORCE_COLOR: "true"
+  matrix:
+    - distribution: Ubuntu
+      distribution_version: xenial
+      init: /lib/systemd/systemd
+      run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    - distribution: Ubuntu
+      distribution_version: trusty
+      init: /sbin/init
+      run_opts: ""
+    - distribution: EL
+      distribution_version: "7"
+      init: /usr/lib/systemd/systemd
+      run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    - distribution: EL
+      distribution_version: "6"
+      init: /sbin/init
+      run_opts: ""
+    - distribution: Debian
+      distribution_version: stretch
+      init: /usr/local/bin/davedaemon
+      run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    - distribution: Debian
+      distribution_version: jessie
+      init: /lib/systemd/systemd
+      run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    - distribution: Debian
+      distribution_version: wheezy
+      init: /sbin/init
+      run_opts: ""
+    - distribution: Fedora
+      distribution_version: "24"
+      init: /usr/lib/systemd/systemd
+      run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    - distribution: Fedora
+      distribution_version: "23"
+      init: /usr/lib/systemd/systemd
+      run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
 
 before_install:
