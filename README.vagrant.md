@@ -16,6 +16,13 @@ To startup tests simply run:
     cd vagrant/
     vagrant up
 
+In case you want to relaunch the tests, restart vagrant provision
+    vagrant provision
+
+For debugging purpose vagrant provide an easy way to connect inside the VM
+    vagrant ssh
+
+
 Notes
 ------
 *Vagrantfile* sets up a testing virtual-machine,
