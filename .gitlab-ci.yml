@@ -33,6 +33,14 @@ debian-stretch:
   image: ansiblecheck/ansiblecheck:debian-stretch
   <<: *ansible_build
 
+ubuntu-trusty:
+  image: ansiblecheck/ansiblecheck:ubuntu-trusty
+  <<: *ansible_build
+
+ubuntu-xenial:
+  image: ansiblecheck/ansiblecheck:ubuntu-xenial
+  <<: *ansible_build
+
 centos-6:
   image: ansiblecheck/ansiblecheck:centos-6
   <<: *ansible_build
@@ -41,10 +49,14 @@ centos-7:
   image: ansiblecheck/ansiblecheck:centos-7
   <<: *ansible_build
 
-ubuntu-trusty:
-  image: ansiblecheck/ansiblecheck:ubuntu-trusty
+fedora-23:
+  image: ansiblecheck/ansiblecheck:fedora-23
   <<: *ansible_build
 
-ubuntu-xenial:
-  image: ansiblecheck/ansiblecheck:ubuntu-xenial
+fedora-24:
+  image: ansiblecheck/ansiblecheck:fedora-24
+  <<: *ansible_build
+
+archlinux-latest:
+  image: ansiblecheck/ansiblecheck:archlinux-latest
   <<: *ansible_build
