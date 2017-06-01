@@ -10,8 +10,12 @@ Requirements
 Supported targets:
 
 - Ubuntu 12.04 "Precise Pangolin"
+- Ubuntu 14.04 "Trusty"
+- Ubuntu 16.04 "Xenial"
 - Debian 8 "Jessie"
+- Debian 9 "Stretch"
 - RedHat EL / CentOS 6
+- RedHat EL / CentOS 7
 - ...
 
 
