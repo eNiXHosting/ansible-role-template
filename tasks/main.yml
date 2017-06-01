@@ -1,2 +1,11 @@
 ---
 # tasks file for $ROLE
+
+# dummy task for tests
+- name: "Dummy task"
+  copy:
+    dest: /tmp/.dummy-ansible-task
+    content: |
+      {{ ansible_host }}
+      ------------------
+      {{ ansible_lsb | to_nice_json }}
