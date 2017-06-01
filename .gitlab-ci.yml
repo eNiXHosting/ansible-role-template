@@ -1,0 +1,50 @@
+variables:
+  ANSIBLE_INVENTORY: "tests/inventory"
+  PYTHONUNBUFFERED: "1"
+  ANSIBLE_FORCE_COLOR: "true"
+
+.ansible_build_template: &ansible_build
+  script:
+    - ansible --version
+    - ansible-playbook tests/test.yml --syntax-check
+#    - ansible-galaxy install -v -r tests/requirements.yml
+    - ansible-playbook -vvv --connection=local tests/test.yml
+    - idempotence=$(mktemp)
+    - ansible-playbook -vvv --connection=local tests/test.yml | tee ${idempotence}
+    - >
+      tail ${idempotence}
+      | grep -q 'changed=0.*failed=0'
+      && (echo 'Idempotence test: pass' && exit 0)
+      || (echo 'Idempotence test: fail' && exit 1)
+
+# We build using (ansiblecheck)[https://hub.docker.com/r/ansiblecheck/ansiblecheck/] images
+# It provide a wide variety of OS container images to test with. most frequent
+# ones included here
+
+debian-wheezy:
+  image: ansiblecheck/ansiblecheck:debian-wheezy
+  <<: *ansible_build
+
+debian-jessie:
+  image: ansiblecheck/ansiblecheck:debian-jessie
+  <<: *ansible_build
+
+debian-stretch:
+  image: ansiblecheck/ansiblecheck:debian-stretch
+  <<: *ansible_build
+
+centos-6:
+  image: ansiblecheck/ansiblecheck:centos-6
+  <<: *ansible_build
+
+centos-7:
+  image: ansiblecheck/ansiblecheck:centos-7
+  <<: *ansible_build
+
+ubuntu-trusty:
+  image: ansiblecheck/ansiblecheck:ubuntu-trusty
+  <<: *ansible_build
+
+ubuntu-xenial:
+  image: ansiblecheck/ansiblecheck:ubuntu-xenial
+  <<: *ansible_build
