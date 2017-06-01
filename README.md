@@ -53,17 +53,20 @@ Clone this repo into your roles directory:
 
 Or use Ansible galaxy requirements.yml
 
+    # $ROLE from enix
+    - src: git+ssh://git@gitlab.enix.org/ansible/ansible-$ROLE.git
+      name: $ROLE
+
 And add it to your play's roles:
 
     - hosts: servers
       roles:
-        - { $ROLE: username.rolename, x: 42 }
-
+        - role $ROLE:
+            $ROLE__var: true
 
 You can also use the role as a playbook. You will be asked which hosts to provision, and you can further configure the play by using `--extra-vars`.
 
     $ ansible-playbook -i inventory --extra-vars='{...}' main.yml
-
 
 Still to do
 -----------
