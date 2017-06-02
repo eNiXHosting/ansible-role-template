@@ -4,7 +4,7 @@ services: docker
 
 env:
   global:
-    - ansible_env: 'ANSIBLE_INVENTORY=tests/inventory PYTHONUNBUFFERED=1 ANSIBLE_FORCE_COLOR=true'
+    - ansible_env: 'ANSIBLE_INVENTORY=inventory PYTHONUNBUFFERED=1 ANSIBLE_FORCE_COLOR=true'
   matrix:
     - distribution: Ubuntu
       distribution_version: xenial
