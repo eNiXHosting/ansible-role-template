@@ -4,9 +4,7 @@ services: docker
 
 env:
   global:
-    - ANSIBLE_INVENTORY: "tests/inventory"
-    - PYTHONUNBUFFERED: "1"
-    - ANSIBLE_FORCE_COLOR: "true"
+    - ansible_env: 'ANSIBLE_INVENTORY: "tests/inventory" PYTHONUNBUFFERED: "1" ANSIBLE_FORCE_COLOR: "true"'
   matrix:
     - distribution: Ubuntu
       distribution_version: xenial
@@ -58,14 +56,14 @@ script:
   # Ansible version check.
   - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible --version'
   # Ansible syntax check.
-  - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml --syntax-check'
+  - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm ${ansible_env} ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml --syntax-check'
 
   # Test role.
-  - 'docker exec "$(cat ${container_id})" ansible-playbook -vvv /etc/ansible/roles/role_under_test/tests/test.yml'
+  - 'docker exec "$(cat ${container_id})" env ${ansible_env} ansible-playbook -vvv /etc/ansible/roles/role_under_test/tests/test.yml'
 
   # Test Idempotence
   - idempotence=$(mktemp)
-  - docker exec "$(cat ${container_id})" ansible-playbook -vvv /etc/ansible/roles/role_under_test/tests/test.yml | tee -a ${idempotence}
+  - docker exec "$(cat ${container_id})" env ${ansible_env} ansible-playbook -vvv /etc/ansible/roles/role_under_test/tests/test.yml | tee -a ${idempotence}
   - >
     tail ${idempotence}
     | grep -q 'changed=0.*failed=0'
