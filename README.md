@@ -1,4 +1,4 @@
-Enix/$ROLE for Ansible
+eNiXHosting.$ROLE
 =================
 
 A role for deploying and configuring [$ROLE](http://$rolesite.com) and extensions on unix hosts using [Ansible](http://www.ansible.com/).
@@ -53,13 +53,18 @@ Clone this repo into your roles directory:
 
 Or use Ansible galaxy requirements.yml
 
-    # $ROLE from enix
+    # $ROLE from eNiXHosting
+    # private role
     - src: git+ssh://git@gitlab.enix.org/ansible/ansible-$ROLE.git
+      name: $ROLE
+
+    # public role
+    - src: eNiXHosting.$ROLE
       name: $ROLE
 
 And add it to your play's roles:
 
-    - hosts: servers
+    - hosts: all
       roles:
         - role $ROLE:
             $ROLE__var: true
@@ -84,9 +89,9 @@ Initial version.
 License
 -------
 
-BSD/GPL/Other
+GPLv2
 
 Author Information
 ------------------
 
-your name <your.name@enix.fr> - http://www.enix.fr
+$your $name <$your.$name@enix.fr> - http://www.enix.fr
