@@ -72,7 +72,7 @@ plugin to Vagrant.
 
 First need to install [vagrant-openstack-provider](https://github.com/ggiamarchi/vagrant-openstack-provider).
 
-Then some environement source files must be configured:
+Then some environment source files must be configured:
   * `~/openrc-common.sh`
 
 ```bash
@@ -141,7 +141,7 @@ Then to use it you must load those ressources files and use the openstack provid
 vagrant up --provider openstack
 ```
 
-If you need to debug you can enable all requests login setting `VAGRANT_LOG=debug` environement variable.
+If you need to debug you can enable all requests logging setting `VAGRANT_LOG=debug` or `VAGRANT_OPENSTACK_LOG=debug` environment variable.
 
 
 License
