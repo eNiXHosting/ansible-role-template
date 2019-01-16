@@ -1,7 +1,7 @@
-eNiXHosting.$ROLE
+eNiXHosting.{{role_name}}
 =================
 
-A role for deploying and configuring [$ROLE](http://$rolesite.com) and extensions on unix hosts using [Ansible](http://www.ansible.com/).
+A role for deploying and configuring [{{role_name}}](http://{{role_name}}.com) and extensions on unix hosts using [Ansible](http://www.ansible.com/).
 
 
 Requirements
@@ -22,9 +22,9 @@ Supported targets:
 Role Variables
 --------------
 
-This roles comes preloaded with almost every available default. You can override each one in your hosts/group vars, in your inventory, or in your play. See the annotated defaults in `defaults/main.yml` for help in configuration. All provided variables start with `$ROLE__`.
+This roles comes preloaded with almost every available default. You can override each one in your hosts/group vars, in your inventory, or in your play. See the annotated defaults in `defaults/main.yml` for help in configuration. All provided variables start with `{{role_name}}__`.
 
-- `$ROLE__` - desc
+- `{{role_name}}__` - desc
 
 Dependencies
 ------------
@@ -36,7 +36,7 @@ Extra
 
 Available extensions (under a switch):
 
-- Extension - `$ROLE_extension`
+- Extension - `{{role_name}}_extension`
 - ...
 
 Callable tasks:
@@ -47,27 +47,22 @@ Callable tasks:
 Usage
 -----
 
-Clone this repo into your roles directory:
+Use Ansible galaxy requirements.yml
 
-    $ git clone https://gitlab.enix.org/ansible/ansible-$ROLE.git roles/$ROLE
-
-Or use Ansible galaxy requirements.yml
-
-    # $ROLE from eNiXHosting
+    # {{role_name}} from eNiXHosting
     # private role
-    - src: git+ssh://git@gitlab.enix.org/ansible/ansible-$ROLE.git
-      name: $ROLE
+    - src: git+ssh://git@gitlab.enix.org/ansible/ansible-{{role_name}}.git
+      name: eNiXHosting.{{role_name}}
 
     # public role
-    - src: eNiXHosting.$ROLE
-      name: $ROLE
+    - src: eNiXHosting.{{role_name}}
 
 And add it to your play's roles:
 
     - hosts: all
       roles:
-        - role $ROLE:
-            $ROLE__var: true
+        - role eNiXHosting.{{role_name}}:
+            {{role_name}}__var: true
 
 You can also use the role as a playbook. You will be asked which hosts to provision, and you can further configure the play by using `--extra-vars`.
 
@@ -94,4 +89,4 @@ GPLv2
 Author Information
 ------------------
 
-$your $name <$your.$name@enix.fr> - http://www.enix.fr
+your name <your.name@enix.fr> - http://www.enix.fr

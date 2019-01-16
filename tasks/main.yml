@@ -1,5 +1,4 @@
 ---
-# tasks file for $ROLE
 
 # dummy task for tests
 - name: "Dummy task"
