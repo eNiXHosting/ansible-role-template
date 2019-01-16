@@ -1,4 +1,4 @@
-eNiXHosting.{{role_name}}
+enix.{{role_name}}
 =================
 
 A role for deploying and configuring [{{role_name}}](http://{{role_name}}.com) and extensions on unix hosts using [Ansible](http://www.ansible.com/).
@@ -9,7 +9,6 @@ Requirements
 
 Supported targets:
 
-- Ubuntu 12.04 "Precise Pangolin"
 - Ubuntu 14.04 "Trusty"
 - Ubuntu 16.04 "Xenial"
 - Debian 8 "Jessie"
@@ -49,19 +48,19 @@ Usage
 
 Use Ansible galaxy requirements.yml
 
-    # {{role_name}} from eNiXHosting
+    # {{role_name}} from enix
     # private role
     - src: git+ssh://git@gitlab.enix.org/ansible/ansible-{{role_name}}.git
-      name: eNiXHosting.{{role_name}}
+      name: enix.{{role_name}}
 
     # public role
-    - src: eNiXHosting.{{role_name}}
+    - src: enix.{{role_name}}
 
 And add it to your play's roles:
 
     - hosts: all
       roles:
-        - role eNiXHosting.{{role_name}}:
+        - role enix.{{role_name}}:
             {{role_name}}__var: true
 
 You can also use the role as a playbook. You will be asked which hosts to provision, and you can further configure the play by using `--extra-vars`.
