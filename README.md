@@ -1,7 +1,7 @@
 ansible role template to be used with ansible-galaxy.
 
 To create a new role:
-`ansible-galacy init --role-skeleton /path/to/ansible-role-template  $rolename`
+`ansible-galaxy init --role-skeleton /path/to/ansible-role-template  $rolename`
 
 Or update your `.ansible.cfg` file with:
 ```
